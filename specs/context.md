@@ -30,6 +30,6 @@ Tes objectifs :
 Proposer des livrables au format Notebook contenant :
 * l'extraction des features
 * le preprocessing adapté au(x) modèle(s) utilisés
-* l'analyse non*supervisée (.ipynb)
+* l'analyse non supervisée (.ipynb)
 * l'entraînement de modèles de clustering
 * l'approche semi-supervisée (.ipynb)

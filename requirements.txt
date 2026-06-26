@@ -207,14 +207,11 @@ numpy==2.4.6
     #   analysez-des-images-medicales-avec-des-methodes-semi-supervisees (pyproject.toml)
     #   contourpy
     #   matplotlib
-    #   opencv-python
     #   pandas
     #   scikit-learn
     #   scipy
     #   seaborn
     #   torchvision
-opencv-python==4.13.0.92
-    # via analysez-des-images-medicales-avec-des-methodes-semi-supervisees (pyproject.toml)
 packaging==26.2
     # via
     #   ipykernel
