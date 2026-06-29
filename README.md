@@ -11,14 +11,11 @@ Le dataset contient **1506 IRM** au format JPEG (512×512, RGB) :
 
 Seulement ~6,6 % des images disposent d'un label → justifie une approche semi-supervisée.
 
-## Pipeline en 5 étapes
+## Pipeline en 2 notebooks
 
 ```
-Étape 1 : Exploration          → Vue d'ensemble du dataset, qualité, visualisations
-Étape 2 : Extraction features  → ResNet50 pré-entraîné → vecteurs 2048D (avgpool)
-Étape 3 : Clustering           → K-Means + DBSCAN → weak labels sur les 1406 images
-Étape 4 : Entraînement MLP     → Supervisé pur vs Semi-supervisé (weak → fine-tune)
-Étape 5 : Pseudo-labellisation → Enrichissement itératif (seuil 0.95, 12 rounds)
+Notebook 1 : Préparation & Extraction      → Exploration dataset, qualité, ResNet50 features (avgpool 2048D)
+Notebook 2 : Clustering & Semi-supervision → K-Means, DBSCAN, Transfer Learning CNN, Pseudo-labellisation
 ```
 
 ## Résultats
@@ -44,11 +41,8 @@ Le pré-entraînement sur les 1406 weak labels améliore le classificateur final
 │   ├── features_meta.csv      # Métadonnées (path, label, split)
 │   └── weak_labels.csv        # Pseudo-labels K-Means (1406 images)
 ├── notebooks/
-│   ├── etape-1.ipynb                     # Exploration et qualité du dataset
-│   ├── etape-2.ipynb                     # Prétraitement et extraction de features
-│   ├── etape-3.ipynb                     # Analyse non supervisée (K-Means, DBSCAN, ARI)
-│   ├── etape-4.ipynb                     # Apprentissage semi-supervisé vs supervisé (MLP)
-│   └── etape-pseudo-labelisation.ipynb   # Pseudo-labellisation itérative
+│   ├── preparation-et-extraction-de-features.ipynb                      # Exploration dataset + extraction ResNet50
+│   └── clustering-et-semi-supervision-et-support-de-presentation.ipynb  # Clustering + CNN + Pseudo-labels
 ├── specs/
 │   ├── context.md
 │   ├── etape-1.md
@@ -75,10 +69,10 @@ uv run ipython kernel install --user --name=analysez-des-images-medicales-avec-d
 ## Exécution des notebooks
 
 ```bash
-# Exécuter un notebook (exemple étape 1)
+# Exécuter un notebook
 uv run jupyter nbconvert --to notebook --execute \
   --ExecutePreprocessor.kernel_name=analysez-des-images-medicales-avec-des-methodes-semi-supervisees \
-  --inplace notebooks/etape-1.ipynb
+  --inplace notebooks/preparation-et-extraction-de-features.ipynb
 
 # Lancer Jupyter Lab pour une exploration interactive
 uv run jupyter lab
